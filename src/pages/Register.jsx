@@ -7,9 +7,14 @@ export default function Register() {
   const { register, isLoading, error } = useAuthStore();
 
   const navigate = useNavigate();
+
   const submit = async (values) => {
-    await register(values);
-    navigate("/");
+    const success = await register(values);
+    if (success) navigate("/");
+  };
+
+  const onLogin = async () => {
+    navigate("/login");
   };
 
   return (
@@ -64,6 +69,16 @@ export default function Register() {
             loading={isLoading}
           >
             Register
+          </Button>
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            type="link"
+            style={{ width: "100%", textAlign: "center" }}
+            onClick={onLogin}
+          >
+            I have an account, Login
           </Button>
         </Form.Item>
       </Form>

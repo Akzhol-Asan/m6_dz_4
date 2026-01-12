@@ -70,8 +70,10 @@ export const useAuthStore = create((set) => ({
         email: data.email,
         password: data.password,
       });
+      return true;
     } catch (error) {
       set({ error: error.response?.data?.message || "Registration failed" });
+      return false;
     } finally {
       set({ isLoading: false });
     }
