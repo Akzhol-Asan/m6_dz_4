@@ -34,7 +34,9 @@ export default function MainPage() {
   return (
     <div className={styles.main_page}>
       <div className={styles.navigation}>
-        <h3>Navigation</h3>
+        <div className={styles.navigations_sighn}>
+          <h3>Navigation</h3>
+        </div>
 
         <div className={styles.category}>
           <p>No categories yet</p>
