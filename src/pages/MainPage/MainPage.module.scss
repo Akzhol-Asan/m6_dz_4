@@ -74,9 +74,14 @@
       padding: 20px;
       margin-top: 20px;
 
-      .products_sighn {
+      .products_list_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: 10px;
-        font-size: 24px;
+        .products_sighn {
+          font-size: 22px;
+        }
       }
     }
   }

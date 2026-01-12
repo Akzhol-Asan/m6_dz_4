@@ -1,24 +1,34 @@
-import { Breadcrumb, Button } from "antd";
+import { Breadcrumb, Button, Modal } from "antd";
 import { useAuthStore } from "../../store/authStore";
 import {
-  DownOutlined,
   HomeOutlined,
   LogoutOutlined,
-  ShoppingCartOutlined,
+  PlusOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import styles from "./MainPage.module.scss";
 import Products from "../../components/Products/Products";
+import NewProductForm from "../../components/NewProductForm/NewProductForm";
+import { useState } from "react";
 
 export default function MainPage() {
   const navigate = useNavigate();
 
-  const { user, logout, isLoading } = useAuthStore();
+  const { user, logout } = useAuthStore();
 
   const onLogout = async () => {
     await logout();
     navigate("/login");
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const onAddNewProduct = () => {
+    setIsModalOpen(true);
+  };
+
+  const onCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -48,11 +58,31 @@ export default function MainPage() {
           />
 
           <div className={styles.products_list}>
-            <h3 className={styles.products_sighn}>Products</h3>
+            <div className={styles.products_list_header}>
+              <h3 className={styles.products_sighn}>Products</h3>
+              <Button
+                onClick={onAddNewProduct}
+                type="primary"
+                icon={<PlusOutlined />}
+              >
+                Add new Product
+              </Button>
+            </div>
             <Products />
           </div>
         </div>
       </div>
+
+      <Modal
+        title="Add new Product"
+        open={isModalOpen}
+        // onOk={}
+        // confirmLoading={}
+        onCancel={onCloseModal}
+        footer={null}
+      >
+        <NewProductForm onSuccess={onCloseModal} />
+      </Modal>
     </div>
   );
 }
