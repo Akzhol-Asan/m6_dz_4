@@ -1,0 +1,41 @@
+.products {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+.product_card {
+  width: calc(20% - 10px);
+  background-color: rgb(245, 245, 245);
+
+  h3 {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+  }
+
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    font-size: 12px;
+    color: grey;
+    margin-top: 5px;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 500;
+    background-color: rgb(224, 224, 255);
+    padding: 2px 5px;
+    border-radius: 5px;
+  }
+}

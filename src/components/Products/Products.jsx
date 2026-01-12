@@ -1,38 +1,24 @@
-import { Button, Card, Masonry } from "antd";
-import { useProductsStore } from "../store/productsStore";
+import { Card } from "antd";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { useProductsStore } from "../../store/productsStore";
+import styles from "./Products.module.scss";
 
-export default function ProductsPage() {
+export default function Products() {
   const { products, getProducts, isLoading, error } = useProductsStore();
-  const navigate = useNavigate();
 
   useEffect(() => {
     getProducts();
   }, []);
-
-  const goBack = () => {
-    navigate(-1);
-  };
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
 
   return (
     <div>
-      <Button
-        onClick={goBack}
-        className="go_back"
-        type="primary"
-        icon={<ArrowLeftOutlined />}
-      >
-        Go back
-      </Button>
-      <div className="products">
+      <div className={styles.products}>
         {products.map((product) => (
           <Card
-            className="product_card"
+            className={styles.product_card}
             key={product.id}
             size="small"
             cover={
