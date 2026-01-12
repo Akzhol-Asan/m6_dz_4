@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Modal } from "antd";
+import { Breadcrumb, Button, Modal, Popconfirm } from "antd";
 import { useAuthStore } from "../../store/authStore";
 import {
   HomeOutlined,
@@ -45,7 +45,15 @@ export default function MainPage() {
         <div className={styles.header}>
           <span>{user?.email}</span>
           <UserOutlined />
-          <LogoutOutlined onClick={onLogout} className={styles.logout} />
+          <Popconfirm
+            title="Logout"
+            description="Are you sure you want to logout?"
+            onConfirm={onLogout}
+            okText="Yes"
+            cancelText="no"
+          >
+            <LogoutOutlined className={styles.logout} />
+          </Popconfirm>
         </div>
 
         <div className={styles.products_block}>
@@ -76,8 +84,6 @@ export default function MainPage() {
       <Modal
         title="Add new Product"
         open={isModalOpen}
-        // onOk={}
-        // confirmLoading={}
         onCancel={onCloseModal}
         footer={null}
       >
